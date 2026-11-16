@@ -28,10 +28,17 @@
 		return new Error(msg);
 	}
 
+	const MIXED_MSG =
+		"Das Add-in läuft über HTTPS, der Server nur über HTTP. " +
+		"Outlook blockiert diese Verbindung (Mixed Content). " +
+		"Open WebUI muss per HTTPS erreichbar sein.";
+
 	async function do_fetch(url, opts)
 	{
 		let res;
 
+		if (location.protocol === "https:" && url.startsWith("http:"))
+			throw new Error(MIXED_MSG);
 		try {
 			res = await fetch(url, opts);
 		} catch (e) {

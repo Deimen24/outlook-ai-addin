@@ -21,6 +21,9 @@
 		url = (url || "").trim();
 		while (url.endsWith("/"))
 			url = url.slice(0, -1);
+		/* users often paste the API path; the code adds it itself */
+		if (url.toLowerCase().endsWith("/api"))
+			url = url.slice(0, -4);
 		return url;
 	}
 
