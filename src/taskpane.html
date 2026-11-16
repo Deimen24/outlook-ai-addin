@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AI Assistant</title>
+	<link rel="stylesheet" href="taskpane.css">
+	<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+	<script src="settings.js"></script>
+	<script src="prompts.js"></script>
+	<script src="mail.js"></script>
+	<script src="api.js"></script>
+	<script src="taskpane.js"></script>
+</head>
+<body>
+	<header>
+		<div id="mode-label">Lade …</div>
+		<div id="subject"></div>
+	</header>
+
+	<div id="no-item" hidden>Keine E-Mail ausgewählt.</div>
+
+	<section id="read-actions" hidden>
+		<div class="grid">
+			<button data-action="summarize">Zusammenfassen</button>
+			<button data-action="reply">Antwort entwerfen</button>
+			<button data-action="translate">Übersetzen</button>
+		</div>
+		<div class="row">
+			<input id="ask-input" type="text"
+				placeholder="Frage zur E-Mail …">
+			<button data-action="ask">Fragen</button>
+		</div>
+	</section>
+
+	<section id="compose-actions" hidden>
+		<div class="grid">
+			<button data-action="improve">Verbessern</button>
+			<button data-action="shorten">Kürzen</button>
+		</div>
+		<div class="row">
+			<select id="tone-select">
+				<option value="formal">Formell</option>
+				<option value="friendly">Freundlich</option>
+				<option value="neutral">Neutral</option>
+			</select>
+			<button data-action="tone">Ton ändern</button>
+		</div>
+		<div class="row">
+			<input id="custom-input" type="text"
+				placeholder="Eigene Anweisung …">
+			<button data-action="custom">Ausführen</button>
+		</div>
+	</section>
+
+	<section id="result-section">
+		<div id="status"></div>
+		<textarea id="result" rows="12"
+			placeholder="Ergebnis erscheint hier."></textarea>
+		<div class="row wrap">
+			<button id="btn-stop" class="danger" hidden>Stopp</button>
+			<button id="btn-copy">Kopieren</button>
+			<button id="btn-reply" class="read-only">
+				Als Antwort öffnen</button>
+			<button id="btn-replace" class="compose-only">
+				Text ersetzen</button>
+			<button id="btn-insert" class="compose-only">
+				An Cursor einfügen</button>
+		</div>
+	</section>
+
+	<details id="settings">
+		<summary>Einstellungen</summary>
+		<label>Server-URL (Open WebUI)
+			<input id="set-server" type="url"
+				placeholder="https://dein-openwebui-server"></label>
+		<label>API-Schlüssel
+			<input id="set-key" type="password"
+				autocomplete="off" placeholder="sk-…"></label>
+		<label>Modell
+			<div class="row">
+				<select id="set-model"></select>
+				<button id="btn-models" type="button"
+					title="Modelle neu laden">&#x21bb;</button>
+			</div>
+		</label>
+		<label>Zielsprache (Übersetzen)
+			<input id="set-lang" type="text"></label>
+		<label>Max. Zeichen der E-Mail
+			<input id="set-max" type="number" min="500"
+				step="500"></label>
+		<label>Temperatur (0–1)
+			<input id="set-temp" type="number" min="0" max="1"
+				step="0.1"></label>
+		<div class="row wrap">
+			<button id="btn-save" class="primary">Speichern</button>
+			<button id="btn-test">Verbindung testen</button>
+		</div>
+		<div id="settings-status"></div>
+	</details>
+</body>
+</html>

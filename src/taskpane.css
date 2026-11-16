@@ -1,0 +1,180 @@
+:root {
+	--bg: #ffffff;
+	--fg: #1f1f1f;
+	--muted: #666666;
+	--border: #d0d0d0;
+	--btn: #f3f3f3;
+	--btn-hover: #e6e6e6;
+	--accent: #2b579a;
+	--error: #c42b1c;
+	--ok: #107c10;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #1f1f1f;
+		--fg: #f0f0f0;
+		--muted: #a0a0a0;
+		--border: #444444;
+		--btn: #2d2d2d;
+		--btn-hover: #3a3a3a;
+		--accent: #6a9eda;
+		--error: #ff8a80;
+		--ok: #7fd17f;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 12px;
+	background: var(--bg);
+	color: var(--fg);
+	font: 14px/1.4 "Segoe UI", -apple-system, BlinkMacSystemFont,
+		Roboto, sans-serif;
+}
+
+header {
+	margin-bottom: 12px;
+}
+
+#mode-label {
+	font-size: 12px;
+	color: var(--muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+#subject {
+	font-weight: 600;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+section {
+	margin-bottom: 12px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+	gap: 6px;
+	margin-bottom: 6px;
+}
+
+.row {
+	display: flex;
+	gap: 6px;
+	margin-bottom: 6px;
+}
+
+.row.wrap {
+	flex-wrap: wrap;
+}
+
+.row > input,
+.row > select {
+	flex: 1;
+	min-width: 0;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	color: var(--fg);
+	background: var(--bg);
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	padding: 6px 8px;
+}
+
+button {
+	background: var(--btn);
+	cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+	background: var(--btn-hover);
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+button.primary {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: #ffffff;
+}
+
+button.danger {
+	border-color: var(--error);
+	color: var(--error);
+}
+
+textarea {
+	width: 100%;
+	resize: vertical;
+	white-space: pre-wrap;
+	margin-bottom: 6px;
+}
+
+#status,
+#settings-status {
+	min-height: 1.4em;
+	font-size: 13px;
+	color: var(--muted);
+}
+
+.error {
+	color: var(--error) !important;
+}
+
+.ok {
+	color: var(--ok) !important;
+}
+
+details {
+	border-top: 1px solid var(--border);
+	padding-top: 8px;
+}
+
+summary {
+	cursor: pointer;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+label {
+	display: block;
+	font-size: 13px;
+	color: var(--muted);
+	margin-bottom: 8px;
+}
+
+label > input {
+	display: block;
+	width: 100%;
+	margin-top: 2px;
+}
+
+label > .row {
+	margin-top: 2px;
+}
+
+body.compose .read-only,
+body.read .compose-only {
+	display: none;
+}
+
+#no-item {
+	color: var(--muted);
+	margin-bottom: 12px;
+}
